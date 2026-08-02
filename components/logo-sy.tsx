@@ -1,3 +1,5 @@
+import { useId } from "react"
+
 import { cn } from "@/lib/utils"
 
 type LogoSYProps = {
@@ -6,118 +8,84 @@ type LogoSYProps = {
 }
 
 /**
- * Logo 3D vectorial (SVG) de la Academia Sumaq Yachay.
- * Escudo con monograma "SY" en dorado con efecto de extrusión 3D,
- * optimizado y escalable a cualquier tamaño sin pérdida de calidad.
+ * Versión SVG del emblema original de Sumaq Yachay.
  */
-
 export function LogoSY({ className, withName = false }: LogoSYProps) {
+  // Este es el único eje horizontal del logo. Todos los textos se anclan a él.
+  const centerX = 210
+  const shieldScale = 1.05
+  const outlineScale = 1.14
+  const shieldTransform = `translate(${centerX} 0) scale(${shieldScale}) translate(-${centerX} 0)`
+  const outlineTransform = `translate(${centerX} 0) scale(${shieldScale}1) translate(-${centerX} 0)`
+  const gradientId = `sy-gold-${useId().replace(/:/g, "")}`
+
   return (
     <svg
-      viewBox="0 0 200 268"
+      viewBox={withName ? "0 0 420 525" : "0 0 420 430"}
       className={cn("h-auto w-full", className)}
       role="img"
       aria-label="Logo Academia Preuniversitaria Sumaq Yachay"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="goldFace" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="oklch(0.92 0.12 95)" />
-          <stop offset="55%" stopColor="oklch(0.82 0.16 86)" />
-          <stop offset="100%" stopColor="oklch(0.68 0.15 72)" />
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fbc908" />
+          <stop offset="1" stopColor="#fbc908" />
         </linearGradient>
-        <linearGradient id="goldEdge" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="oklch(0.55 0.12 66)" />
-          <stop offset="100%" stopColor="oklch(0.4 0.09 60)" />
-        </linearGradient>
-        <linearGradient id="navyFace" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="oklch(0.27 0.08 264)" />
-          <stop offset="100%" stopColor="oklch(0.16 0.06 264)" />
-        </linearGradient>
-        <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="oklch(0.1 0.05 264)" floodOpacity="0.55" />
-        </filter>
       </defs>
 
-      <g filter="url(#softShadow)">
-        {/* Cuerpo del escudo */}
+      {/* El escudo, título y monograma escalan juntos desde su centro. */}
+      <g transform={shieldTransform}>
         <path
-          d="M22 16 H178 V126 C178 188 138 220 100 240 C62 220 22 188 22 126 Z"
-          fill="url(#navyFace)"
-          stroke="url(#goldEdge)"
+          d="M47 7 H373 V75 C373 203 313 332 210 421 C107 332 47 203 47 75 Z"
+          fill="#0a1137"
+          stroke={`url(#${gradientId})`}
           strokeWidth="5"
+          strokeLinejoin="round"
+          transform={outlineTransform}
         />
-        {/* Borde interior dorado */}
-        <path
-          d="M34 28 H166 V124 C166 178 132 206 100 224 C68 206 34 178 34 124 Z"
-          fill="none"
-          stroke="url(#goldFace)"
-          strokeWidth="4"
-        />
+
+        <path d="M56 16 H364" stroke={`url(#${gradientId})`} strokeWidth="7" />
+        <text
+          x={centerX}
+          y="61"
+          fill={`url(#${gradientId})`}
+          fontFamily="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+          fontSize="29"
+          fontStretch="condensed"
+          letterSpacing="-0.5"
+          textAnchor="middle"
+        >
+          ACADEMIA PREUNIVERSITARIA
+        </text>
+
+        <g transform={`translate(${centerX} 275) skewX(-2) scale(.78 1.18) translate(-${centerX} -275)`}>
+          <text
+            x={centerX}
+            y="337"
+            fill={`url(#${gradientId})`}
+            fontFamily="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+            fontSize="278"
+            fontWeight="900"
+            letterSpacing="-28"
+            textAnchor="middle"
+          >
+            S Y
+          </text>
+        </g>
       </g>
-
-      {/* Texto superior */}
-      <text
-        x="100"
-        y="52"
-        textAnchor="middle"
-        fontFamily="var(--font-space-grotesk), sans-serif"
-        fontWeight="700"
-        fontSize="13"
-        letterSpacing="0.5"
-        fill="url(#goldFace)"
-      >
-        ACADEMIA
-      </text>
-      <text
-        x="100"
-        y="66"
-        textAnchor="middle"
-        fontFamily="var(--font-space-grotesk), sans-serif"
-        fontWeight="700"
-        fontSize="9.5"
-        letterSpacing="1"
-        fill="url(#goldFace)"
-      >
-        PREUNIVERSITARIA
-      </text>
-
-      {/* Monograma SY con extrusión 3D (capa de profundidad) */}
-      <text
-        x="103"
-        y="176"
-        textAnchor="middle"
-        fontFamily="var(--font-space-grotesk), sans-serif"
-        fontWeight="700"
-        fontSize="118"
-        fill="url(#goldEdge)"
-        fontStyle="italic"
-      >
-        SY
-      </text>
-      {/* Cara frontal del monograma */}
-      <text
-        x="100"
-        y="172"
-        textAnchor="middle"
-        fontFamily="var(--font-space-grotesk), sans-serif"
-        fontWeight="700"
-        fontSize="118"
-        fill="url(#goldFace)"
-        fontStyle="italic"
-      >
-        SY
-      </text>
 
       {withName && (
         <text
-          x="100"
-          y="262"
-          textAnchor="middle"
-          fontFamily="var(--font-space-grotesk), sans-serif"
-          fontWeight="600"
+          x={centerX}
+          y="503"
+          fill={`url(#${gradientId})`}
+          fontFamily="'Brush Script MT', 'Segoe Script', cursive"
+          fontSize="72"
           fontStyle="italic"
-          fontSize="26"
-          fill="url(#goldFace)"
+          fontWeight="100"
+          letterSpacing="-3"
+          textAnchor="middle"
         >
           Sumaq Yachay
         </text>
