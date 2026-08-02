@@ -14,9 +14,9 @@ export function LogoSY({ className, withName = false }: LogoSYProps) {
   // Este es el único eje horizontal del logo. Todos los textos se anclan a él.
   const centerX = 210
   const shieldScale = 1.05
-  const outlineScale = 1.14
+  const outlineScale = 1.05
   const shieldTransform = `translate(${centerX} 0) scale(${shieldScale}) translate(-${centerX} 0)`
-  const outlineTransform = `translate(${centerX} 0) scale(${shieldScale}1) translate(-${centerX} 0)`
+  const outlineTransform = `translate(${centerX} 0) scale(${outlineScale}1) translate(-${centerX} 0)`
   const gradientId = `sy-gold-${useId().replace(/:/g, "")}`
 
   return (
