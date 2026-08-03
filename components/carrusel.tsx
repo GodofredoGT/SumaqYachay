@@ -40,7 +40,7 @@ export function Carrusel() {
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
             {slides.map((s) => (
-              <div key={s.src} className="relative aspect-[16/9] w-full shrink-0">
+              <div key={s.src} className="relative aspect-video w-full shrink-0">
                 <Image
                   src={s.src || "/placeholder.svg"}
                   alt={s.title}
@@ -49,7 +49,7 @@ export function Carrusel() {
                   sizes="(max-width: 1024px) 100vw, 1024px"
                   priority={s.src === slides[0].src}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 md:p-8">
                   <h3 className="font-heading text-xl font-bold text-foreground md:text-2xl">
                     {s.title}
