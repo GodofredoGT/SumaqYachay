@@ -7,17 +7,15 @@ type LogoSYProps = {
   withName?: boolean
 }
 
-/**
- * Versión SVG del emblema original de Sumaq Yachay.
- */
+/** SVG del emblema de Sumaq Yachay, preparado para una rotación 3D externa. */
 export function LogoSY({ className, withName = false }: LogoSYProps) {
-  // Este es el único eje horizontal del logo. Todos los textos se anclan a él.
   const centerX = 210
   const shieldScale = 1.05
   const outlineScale = 1.05
   const shieldTransform = `translate(${centerX} 0) scale(${shieldScale}) translate(-${centerX} 0)`
-  const outlineTransform = `translate(${centerX} 0) scale(${outlineScale}1) translate(-${centerX} 0)`
+  const outlineTransform = `translate(${centerX} 0) scale(${outlineScale} 1) translate(-${centerX} 0)`
   const gradientId = `sy-gold-${useId().replace(/:/g, "")}`
+  const depthStyle = { transform: "translateZ(-12px)", transformStyle: "preserve-3d" as const }
 
   return (
     <svg
@@ -26,6 +24,7 @@ export function LogoSY({ className, withName = false }: LogoSYProps) {
       role="img"
       aria-label="Logo Academia Preuniversitaria Sumaq Yachay"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ transformStyle: "preserve-3d" }}
     >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -34,7 +33,18 @@ export function LogoSY({ className, withName = false }: LogoSYProps) {
         </linearGradient>
       </defs>
 
-      {/* El escudo, título y monograma escalan juntos desde su centro. */}
+      {/* Capa posterior amarilla: se ve solo cuando un contenedor rota el SVG. */}
+      <g transform={shieldTransform}>
+        <g data-logo-depth="shield" style={depthStyle}>
+          <path
+            d="M47 7 H373 V75 C373 203 313 332 210 421 C107 332 47 203 47 75 Z"
+            fill="#fbc908"
+            transform={outlineTransform}
+          />
+        </g>
+      </g>
+
+      {/* Cara frontal: escudo, título y monograma se escalan desde el mismo eje. */}
       <g transform={shieldTransform}>
         <path
           d="M47 7 H373 V75 C373 203 313 332 210 421 C107 332 47 203 47 75 Z"
@@ -76,19 +86,37 @@ export function LogoSY({ className, withName = false }: LogoSYProps) {
       </g>
 
       {withName && (
-        <text
-          x={centerX}
-          y="503"
-          fill={`url(#${gradientId})`}
-          fontFamily="'Brush Script MT', 'Segoe Script', cursive"
-          fontSize="72"
-          fontStyle="italic"
-          fontWeight="100"
-          letterSpacing="-3"
-          textAnchor="middle"
-        >
-          Sumaq Yachay
-        </text>
+        <>
+          {/* Grosor amarillo de la firma, oculto por la cara frontal al verla de frente. */}
+          <text
+            data-logo-depth="name"
+            x={centerX}
+            y="503"
+            fill="#fbc908"
+            fontFamily="'Brush Script MT', 'Segoe Script', cursive"
+            fontSize="72"
+            fontStyle="italic"
+            fontWeight="100"
+            letterSpacing="-3"
+            textAnchor="middle"
+            style={depthStyle}
+          >
+            Sumaq Yachay
+          </text>
+          <text
+            x={centerX}
+            y="503"
+            fill={`url(#${gradientId})`}
+            fontFamily="'Brush Script MT', 'Segoe Script', cursive"
+            fontSize="72"
+            fontStyle="italic"
+            fontWeight="100"
+            letterSpacing="-3"
+            textAnchor="middle"
+          >
+            Sumaq Yachay
+          </text>
+        </>
       )}
     </svg>
   )
