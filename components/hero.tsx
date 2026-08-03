@@ -69,10 +69,28 @@ export function Hero() {
           />
           <div className="logo3d-scene">
             <div className="logo3d-rotor relative w-64 md:w-80">
-              <div style={{ backfaceVisibility: "hidden" }} className="w-full">
+              {Array.from({ length: 17 }, (_, index) => -12 + index * 1.5).map((depth) => (
+                <div
+                  key={depth}
+                  className="logo3d-edge absolute inset-0 w-full"
+                  style={{ transform: `translateZ(${depth}px)` }}
+                >
+                  <LogoSY withName className="w-full" />
+                </div>
+              ))}
+              {Array.from({ length: 17 }, (_, index) => -12 + index * 1.5).map((depth) => (
+                <div
+                  key={`back-${depth}`}
+                  className="logo3d-edge absolute inset-0 w-full"
+                  style={{ transform: `rotateY(180deg) translateZ(${depth}px)` }}
+                >
+                  <LogoSY withName className="w-full" />
+                </div>
+              ))}
+              <div className="logo3d-face relative w-full" style={{ transform: "translateZ(14px)" }}>
                 <LogoSY withName className="w-full drop-shadow-2xl" />
               </div>
-              <div style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }} className="absolute inset-0 w-full">
+              <div className="logo3d-face absolute inset-0 w-full" style={{ transform: "rotateY(180deg) translateZ(14px)" }}>
                 <LogoSY withName className="w-full drop-shadow-2xl" />
               </div>
             </div>
