@@ -13,7 +13,7 @@ export function Hero() {
     <section id="inicio" className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
       <div className="grid-bg absolute inset-0 opacity-70" aria-hidden />
       <div
-        className="absolute -top-32 left-1/2 size-[520px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]"
+        className="absolute -top-32 left-1/2 size-130 -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]"
         aria-hidden
       />
 
@@ -64,7 +64,7 @@ export function Hero() {
             aria-hidden
           />
           <div
-            className="absolute inset-0 m-auto size-80 animate-spin-slow rounded-full border border-dashed border-primary/20 md:size-[26rem]"
+            className="absolute inset-0 m-auto size-80 animate-spin-slow rounded-full border border-dashed border-primary/20 md:size-104"
             aria-hidden
           />
           <div className="logo3d-scene">
