@@ -6,6 +6,7 @@ const __dirname = dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ['192.168.56.1'],
   typescript: {
     ignoreBuildErrors: true,
   },
