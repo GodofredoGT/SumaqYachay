@@ -48,6 +48,7 @@ export function Carrusel() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 1024px"
                   priority={s.src === slides[0].src}
+                  loading={s.src === "/carousel-logros.png" ? "eager" : undefined}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 md:p-8">
