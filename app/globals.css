@@ -172,6 +172,98 @@
   50% { transform: rotateX(-4deg) rotateY(180deg) translateY(-8px); }
   to { transform: rotateX(-4deg) rotateY(360deg) translateY(0); }
 }
+
+/* Cada materia tiene una respuesta propia al pasar el cursor sobre su tarjeta. */
+.course-card {
+  will-change: transform;
+}
+.course-icon {
+  will-change: transform;
+}
+.course-card[data-course="0"]:hover {
+  animation: course-math 420ms ease-out both;
+}
+.course-card[data-course="0"]:hover .course-icon {
+  animation: course-calculate 520ms cubic-bezier(.2, .8, .2, 1);
+}
+.course-card[data-course="1"]:hover {
+  animation: course-communication 460ms ease-out both;
+}
+.course-card[data-course="1"]:hover .course-icon {
+  animation: course-speak 600ms ease-in-out;
+}
+.course-card[data-course="2"]:hover {
+  animation: course-reasoning 500ms ease-out both;
+}
+.course-card[data-course="2"]:hover .course-icon {
+  animation: course-think 720ms ease-in-out;
+}
+.course-card[data-course="3"]:hover {
+  animation: course-trigonometry 500ms ease-out both;
+}
+.course-card[data-course="3"]:hover .course-icon {
+  animation: course-angle 620ms cubic-bezier(.2, .9, .25, 1);
+}
+.course-card[data-course="4"]:hover {
+  animation: course-geometry 460ms ease-out both;
+}
+.course-card[data-course="4"]:hover .course-icon {
+  animation: course-compass 680ms ease-in-out;
+}
+.course-card[data-course="5"]:hover {
+  animation: course-algebra 460ms ease-out both;
+}
+.course-card[data-course="5"]:hover .course-icon {
+  animation: course-function 580ms cubic-bezier(.3, .8, .3, 1);
+}
+
+@keyframes course-math {
+  50% { transform: translateY(-7px) rotate(-1deg); }
+  100% { transform: translateY(-4px); }
+}
+@keyframes course-calculate {
+  35% { transform: rotate(-12deg) scale(1.1); }
+  70% { transform: rotate(10deg) scale(1.05); }
+}
+@keyframes course-communication {
+  50% { transform: translateY(-5px) rotate(1.2deg); }
+  100% { transform: translateY(-3px) rotate(.4deg); }
+}
+@keyframes course-speak {
+  35% { transform: translateY(-7px) scale(1.08); }
+  65% { transform: translateY(1px) scale(.98); }
+}
+@keyframes course-reasoning {
+  50% { transform: scale(1.025); box-shadow: 0 0 34px -12px oklch(0.82 0.155 88 / .75); }
+  100% { transform: scale(1.012); }
+}
+@keyframes course-think {
+  50% { transform: scale(1.2); }
+}
+@keyframes course-trigonometry {
+  50% { transform: translateY(-5px) skewX(-1.4deg); }
+  100% { transform: translateY(-3px); }
+}
+@keyframes course-angle {
+  55% { transform: rotate(90deg) scale(1.1); }
+}
+@keyframes course-geometry {
+  50% { transform: translateY(-5px) rotate(-.8deg); }
+  100% { transform: translateY(-3px); }
+}
+@keyframes course-compass {
+  50% { transform: rotate(135deg) scale(1.08); }
+}
+@keyframes course-algebra {
+  50% { transform: translateX(7px) translateY(-3px); }
+  100% { transform: translateX(3px) translateY(-2px); }
+}
+@keyframes course-function {
+  45% { transform: translateX(8px) scale(1.08); }
+  75% { transform: translateX(-3px); }
+}
 @media (prefers-reduced-motion: reduce) {
   .logo3d-rotor { animation: float-y 6s ease-in-out infinite; }
+  .course-card:hover,
+  .course-card:hover .course-icon { animation: none; }
 }
