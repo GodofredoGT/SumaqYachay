@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Clock, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import SplitFlapText from './SplitFlapText'
 
 // Datos de contacto de la academia (edítalos con los reales)
 const WHATSAPP = "51999999999"
@@ -31,7 +32,21 @@ export function Contacto() {
             Contáctanos
           </span>
           <h2 className="mt-3 font-heading text-3xl font-bold text-balance md:text-4xl">
-            ¿Listo para empezar? Escríbenos
+            <SplitFlapText 
+              words={["¿Listo para empezar?", "     Escríbenos"]}
+              flipDuration = {0.12} 
+              stagger = {0.06}
+              cycleDelay = {2400}
+              charset="alphanumeric"
+              flipsPerChar = {8}
+              tileColor = "#040d27"
+              textColor = "#f8fafc"
+              tileRadius = {8}
+              gap = {6}
+              fontSize = {52}
+              loop
+              padTo = {12}
+            />
           </h2>
           <p className="mt-4 text-muted-foreground text-pretty">
             Resolvemos tus dudas y te ayudamos con la matrícula por WhatsApp o correo.
