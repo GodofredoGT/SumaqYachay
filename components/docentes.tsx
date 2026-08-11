@@ -16,8 +16,8 @@ const docentes = [
 function TarjetaDocente({ docente }: { docente: (typeof docentes)[number] }) {
   return (
     <SpotlightCard
-      spotlightColor="rgba(225, 180, 62, 0.18)"
-      className="group h-[280px] w-full rounded-2xl border-border/60 bg-card/95 p-0 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-primary/60"
+      spotlightColor="transparent"
+      className="group h-[280px] w-full rounded-2xl border-border/60 bg-background p-0 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-primary/60"
     >
       <div className="relative h-[130px] overflow-hidden border-b border-border/60 bg-white">
         <Image
@@ -86,7 +86,7 @@ export function Docentes() {
             responsive
             className="mx-auto hidden w-full max-w-[920px] xl:block"
             centerContent={
-              <div className="rounded-full border border-primary/30 bg-card/95 px-6 py-6 text-center shadow-lg backdrop-blur">
+              <div className="rounded-full border border-primary/30 bg-background px-6 py-6 text-center shadow-lg backdrop-blur">
                 <span className="block font-heading text-lg font-bold text-foreground">Sumaq Yachay</span>
                 <span className="mt-1 block text-xs text-primary">Plana docente</span>
               </div>
