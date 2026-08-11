@@ -47,6 +47,10 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
     setOpacity(0);
   };
 
+  const containerStyle: React.CSSProperties | undefined = spotlightColor === 'transparent'
+    ? { background: 'var(--background)' }
+    : undefined;
+
   return (
     <div
       ref={divRef}
@@ -55,7 +59,8 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8 ${className}`}
+      className={`relative rounded-3xl border border-neutral-800 overflow-hidden p-8 ${className}`}
+      style={containerStyle}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
