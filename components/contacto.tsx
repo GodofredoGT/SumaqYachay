@@ -31,21 +31,21 @@ export function Contacto() {
           <span className="text-sm font-semibold uppercase tracking-widest text-primary">
             Contáctanos
           </span>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-balance md:text-4xl">
-            <SplitFlapText 
+          <h2 className="mt-3 w-full overflow-visible font-heading text-3xl font-bold text-balance md:text-4xl">
+            <SplitFlapText
               words={["¿Listo para empezar?", "     Escríbenos"]}
-              flipDuration = {0.12} 
-              stagger = {0.06}
-              cycleDelay = {2400}
+              flipDuration={0.12}
+              stagger={0.06}
+              cycleDelay={2400}
               charset="alphanumeric"
-              flipsPerChar = {8}
-              tileColor = "#040d27"
-              textColor = "#f8fafc"
-              tileRadius = {8}
-              gap = {6}
-              fontSize = {52}
+              flipsPerChar={8}
+              tileColor="#040d27"
+              textColor="#f8fafc"
+              tileRadius={"clamp(3px, 1vw, 8px)"}
+              gap={"clamp(2px, 0.5vw, 5px)"}
+              fontSize={"clamp(13px, 4.2vw, 32px)"}
               loop
-              padTo = {12}
+              padTo={20}
             />
           </h2>
           <p className="mt-4 text-muted-foreground text-pretty">
